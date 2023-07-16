@@ -1,27 +1,33 @@
-// making files in folder in node js 
-const { log } = require("console");
-const fs = require("fs");
-// using path module provided by node js 
+const fs = require('fs')
 
-const path = require("path");
-const dirPath = path.join(__dirname, "files");
-console.log(dirPath);
+const path = require('path')
+const dirpath = path.join(__dirname, 'crud')
+const filePath = `${dirpath}/apple.txt` 
 
-// creating dynaming files in folder
+//creating file 
+fs.writeFileSync(filePath,'this is simple file') 
 
-for (let i = 0; i <= 4; i++) {
-  // both are similar 
-  // fs.writeFileSync( dirPath+'/hello'+i+ '.txt', 'simple text file');
-  fs.writeFileSync(`hello${i}'.txt`, 'simple text file');
-}
+// reading file content 
+
+// fs.readFile(filePath,'utf-8' ,(err, item)=>{
+//   console.log(item);
+// })
+
+//UPDATING FILE CONTENETS 
+
+// fs.appendFile(filePath, ' , and file name is banana.txt', (err)=>{
+//   if(!err) console.log('file is updated');
+// })
+
+//RENAME FILE OPERATION 
 
 
-//get file names and printing in console
-// reading files  of directory
-fs.readdir(dirPath, (err, files) => {
-  console.log(files);
-  files.forEach((item) => {
-    console.log(`file name is ${item}`);
-  });
-});
- 
+// fs.rename(filePath, `${dirpath}/milk.txt`,(err)=>{
+//     if(!err) console.log('file is Renamed');
+
+// }  )
+
+
+//DELETING FILE IN NODE JS
+
+// fs.unlinkSync(`${dirpath}/milk.txt` ) 
