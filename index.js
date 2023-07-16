@@ -1,26 +1,27 @@
-const http = require("http");
-<<<<<<< HEAD
-const data = require("./data");
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { "Content-Type ": "application/json" });
-    res.write(JSON.stringify(data));
-    res.end();
-  })
-=======
+// making files in folder in node js 
+const { log } = require("console");
+const fs = require("fs");
+// using path module provided by node js 
 
+const path = require("path");
+const dirPath = path.join(__dirname, "files");
+console.log(dirPath);
 
+// creating dynaming files in folder
 
- let dataControl =(res,req)=>{
-    res.write("<h1>JAY SHREE RAM</h1>");
-
-    res.end();
+for (let i = 0; i <= 4; i++) {
+  // both are similar 
+  // fs.writeFileSync( dirPath+'/hello'+i+ '.txt', 'simple text file');
+  fs.writeFileSync(`hello${i}'.txt`, 'simple text file');
 }
 
 
-
-
-http
-  .createServer(dataControl)
->>>>>>> e7bdef569752992d64f326735945f3225d9ff15c
-  .listen(4500);
+//get file names and printing in console
+// reading files  of directory
+fs.readdir(dirPath, (err, files) => {
+  console.log(files);
+  files.forEach((item) => {
+    console.log(`file name is ${item}`);
+  });
+});
+ 
