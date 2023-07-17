@@ -1,33 +1,15 @@
-const fs = require('fs')
-
-const path = require('path')
-const dirpath = path.join(__dirname, 'crud')
-const filePath = `${dirpath}/apple.txt` 
-
-//creating file 
-fs.writeFileSync(filePath,'this is simple file') 
-
-// reading file content 
-
-// fs.readFile(filePath,'utf-8' ,(err, item)=>{
-//   console.log(item);
-// })
-
-//UPDATING FILE CONTENETS 
-
-// fs.appendFile(filePath, ' , and file name is banana.txt', (err)=>{
-//   if(!err) console.log('file is updated');
-// })
-
-//RENAME FILE OPERATION 
+let a = 20 ;
+let b =0 ;
 
 
-// fs.rename(filePath, `${dirpath}/milk.txt`,(err)=>{
-//     if(!err) console.log('file is Renamed');
+let waitingData =  new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve(10)
+    },2000)
+    
+})
+waitingData.then((b)=>{
 
-// }  )
+    console.log(a+b);
 
-
-//DELETING FILE IN NODE JS
-
-// fs.unlinkSync(`${dirpath}/milk.txt` ) 
+})
