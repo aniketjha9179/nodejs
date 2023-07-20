@@ -1,40 +1,18 @@
-const path = require("path");
+// connection mongo db with node
 
-const express = require("express");
+const { MongoClient } = require("mongodb");
+const database = "e-commerce";
+const url = "mongodb://127.0.0.1:27017";
 
-const app = express();
+const client = new MongoClient(url);
 
-const publicPath = path.join(__dirname, "public");
+async function getData() {
+  let result = await client.connect();
+  let db = result.db(database);
+  //telling which table to connect of mongodb
+  let collection = db.collection("products");
+  let response = await collection.find({}).toArray();
+  console.log(response);
+}
 
-app.set("view engine", "ejs");
-
-app.get("", (_r, res) => {
-  res.sendFile(`${publicPath}/home.html`);
-});
-
-app.get("/profile", (_r, res) => {
-  const user = {
-    name: "aniket",
-    city: "bhopal",
-    email: "aj@gmail.com ",
-    skills: ["php", "js", "nodejs", "java", "cpp", "scala"],
-  };
-
-  res.render("profile", { user });
-});
-
-app.get('/login',(_r,res)=>{
-  res.render('login');
-})
-
-app.get("/about", (_r, res) => {
-  res.sendFile(`${publicPath}/about.html`);
-});
-app.get("/help", (_r, res) => {
-  res.sendFile(`${publicPath}/help.html`);
-});
-
-app.get("*", (_r, res) => {
-  res.sendFile(`${publicPath}/nopage.html`);
-});
-app.listen(5000);
+getData();
