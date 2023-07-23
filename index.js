@@ -5,12 +5,18 @@ const main = async () => {
   const ProductSchema = new mongoose.Schema({
     name: String,
     price:Number,
+    brand:String,
+    Category:String,
+
+
 
   });
   const ProductsModel =  mongoose.model('products',ProductSchema)
   let data = new ProductsModel({
     name:'m18',
-    price:1000
+    price:1200,
+    brand:'apple',
+    category:'smart-phone'
   })
   let result  = await data.save()
   console.log(result);
