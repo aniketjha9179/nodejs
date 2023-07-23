@@ -1,19 +1,11 @@
-const express = require("express");
-const multer = require("multer");
-const app = express();
+const os= require('os')
+// console.log(os.arch());
+// total ram free available in my device 
+// console.log(os.freemem()/(1024*1024*1024));
+// console.log(os.totalmem()/(1024*1024*1024));
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "uploads");
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + "_" + Date.now() + ".jpg");
-    },
-  }),
-}).single('user_file')
 
-app.post("/upload",upload, (req, res) => {
-  res.send("file uploaded");
-});
-app.listen(5000);
+// console.log(os.hostname());
+// console.log(os.platform());
+// console.log(os.cpus());
+// console.log(os.userInfo());
