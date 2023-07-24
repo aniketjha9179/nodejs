@@ -1,11 +1,26 @@
-const os= require('os')
-// console.log(os.arch());
-// total ram free available in my device 
-// console.log(os.freemem()/(1024*1024*1024));
-// console.log(os.totalmem()/(1024*1024*1024));
+const express = require('express')
+const  EventEmitter =  require('events')
 
+const app = express()
+const event =new EventEmitter();
+let count =0
 
-// console.log(os.hostname());
-// console.log(os.platform());
-// console.log(os.cpus());
-// console.log(os.userInfo());
+event.on("countApi", ()=>{
+    count++;
+    console.log('event called',count);
+})
+app.get('/',(req, res)=>{
+    res.send('api called');
+    event.emit("countApi")
+})  
+app.get('/search',(req, res)=>{
+    res.send('search api called');
+    console.log('event called',count);
+
+})  
+app.get('/update',(req, res)=>{
+    res.send('update api called');
+    console.log('event called',count);
+
+})  
+app.listen(5000)
